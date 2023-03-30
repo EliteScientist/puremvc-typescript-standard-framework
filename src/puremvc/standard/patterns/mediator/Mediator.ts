@@ -74,6 +74,11 @@ export class Mediator<ViewType = unknown>
 		return this.#viewComponent;
 	}
 
+	public get viewComponent():ViewType | undefined
+	{
+		return this.#viewComponent;
+	}
+
 	/**
 	 * Set the <code>IMediator</code>'s view component.
 	 * 

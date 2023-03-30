@@ -1338,6 +1338,9 @@
         getViewComponent() {
             return this.#viewComponent;
         }
+        get viewComponent() {
+            return this.#viewComponent;
+        }
         /**
          * Set the <code>IMediator</code>'s view component.
          *

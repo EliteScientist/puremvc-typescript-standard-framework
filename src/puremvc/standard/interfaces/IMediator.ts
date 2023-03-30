@@ -59,6 +59,7 @@ export interface IMediator<ViewType = unknown>
 		* 		The <code>Mediator</code>'s view component.
 		*/
 	getViewComponent():ViewType | undefined;
+	get viewComponent():ViewType | undefined;
 
 	/**
 	 * Set the <code>IMediator</code>'s view component.

@@ -248,6 +248,7 @@ interface IMediator<ViewType = unknown> extends INotifier {
         * 		The <code>Mediator</code>'s view component.
         */
     getViewComponent(): ViewType | undefined;
+    get viewComponent(): ViewType | undefined;
     /**
      * Set the <code>IMediator</code>'s view component.
      *
@@ -1683,6 +1684,7 @@ declare class Mediator<ViewType = unknown> extends Notifier implements IMediator
      * 		The <code>Mediator</code>'s default view component.
      */
     getViewComponent(): ViewType | undefined;
+    get viewComponent(): ViewType | undefined;
     /**
      * Set the <code>IMediator</code>'s view component.
      *
