@@ -172,6 +172,17 @@ export class Controller
 		}
 	}
 
+	public async dispose(): Promise<void>
+	{
+		const names = [...this.#commandMap.keys()];
+		
+		names.forEach((name) =>
+			this.removeCommand(name)
+		);
+
+		Controller.instance = undefined;
+	}
+
 	/**
 	 * Singleton instance local reference.
 	 *

@@ -151,6 +151,8 @@ export interface IFacade
 	 * @param notification
 	 * 		The <code>INotification</code> to have the <code>IView</code> notify
 	 *		<code>IObserver</code>s	of.
-		*/
+	 */
 	notifyObservers( notification:INotification ): Promise<void>;
+
+	dispose(): Promise<void>;
 }

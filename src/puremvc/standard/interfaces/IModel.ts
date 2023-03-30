@@ -54,9 +54,11 @@ export interface IModel
 	 * 
 	 * @param proxyName
 	 *		The name of the <code>IProxy</code> to verify the existence of its registration.
-		*
-		* @return
-		*		A Proxy is currently registered with the given <code>proxyName</code>.
-		*/
+	 *
+	 * @return
+	 *		A Proxy is currently registered with the given <code>proxyName</code>.
+	 */
 	hasProxy( proxyName:string ):boolean;
+
+	dispose(): Promise<void>;
 }

@@ -124,6 +124,17 @@ export class Model
 		return this.#proxyMap.has(proxyName);
 	}
 
+	public async dispose(): Promise<void>
+	{
+		const names = [...this.#proxyMap.keys()];
+		
+		names.forEach((name) =>
+			this.removeProxy(name)
+		);
+
+		Model.instance = undefined;
+	}
+
 	/**
 	 * Error message used to indicate that a controller singleton is already constructed when
 	 * trying to constructs the class twice.

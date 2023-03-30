@@ -266,6 +266,17 @@ export class View
 		return this.#mediatorMap.has(mediatorName);
 	}
 
+	public async dispose(): Promise<void>
+	{
+		const names = [...this.#mediatorMap.keys()];
+
+		names.forEach((name) =>
+			this.removeMediator(name)
+		);
+
+		View.instance = undefined;
+	}
+
 	/**
 	 * @constant
 	 * @protected

@@ -318,6 +318,11 @@ class View {
     hasMediator(mediatorName) {
         return this.#mediatorMap.has(mediatorName);
     }
+    async dispose() {
+        const names = [...this.#mediatorMap.keys()];
+        names.forEach((name) => this.removeMediator(name));
+        View.instance = undefined;
+    }
     /**
      * @constant
      * @protected
@@ -489,6 +494,11 @@ class Controller {
             this.#commandMap.delete(notificationName);
         }
     }
+    async dispose() {
+        const names = [...this.#commandMap.keys()];
+        names.forEach((name) => this.removeCommand(name));
+        Controller.instance = undefined;
+    }
     /**
      * Singleton instance local reference.
      *
@@ -618,6 +628,11 @@ class Model {
      */
     hasProxy(proxyName) {
         return this.#proxyMap.has(proxyName);
+    }
+    async dispose() {
+        const names = [...this.#proxyMap.keys()];
+        names.forEach((name) => this.removeProxy(name));
+        Model.instance = undefined;
     }
     /**
      * Error message used to indicate that a controller singleton is already constructed when
@@ -1074,6 +1089,12 @@ class Facade {
      */
     async sendNotification(name, body, type) {
         return this.notifyObservers(new Notification(name, body, type));
+    }
+    async dispose() {
+        await this.#view.dispose();
+        await this.#controller.dispose();
+        await this.#model.dispose();
+        Facade.instance = undefined;
     }
     /**
      * @constant

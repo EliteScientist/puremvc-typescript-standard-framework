@@ -191,6 +191,7 @@ interface IController {
      * 		mapping for.
      */
     removeCommand(notificationName: string): void;
+    dispose(): Promise<void>;
 }
 
 /**
@@ -473,8 +474,9 @@ interface IFacade extends INotifier {
      * @param notification
      * 		The <code>INotification</code> to have the <code>IView</code> notify
      *		<code>IObserver</code>s	of.
-        */
+     */
     notifyObservers(notification: INotification): Promise<void>;
+    dispose(): Promise<void>;
 }
 
 /**
@@ -527,11 +529,12 @@ interface IModel {
      *
      * @param proxyName
      *		The name of the <code>IProxy</code> to verify the existence of its registration.
-        *
-        * @return
-        *		A Proxy is currently registered with the given <code>proxyName</code>.
-        */
+     *
+     * @return
+     *		A Proxy is currently registered with the given <code>proxyName</code>.
+     */
     hasProxy(proxyName: string): boolean;
+    dispose(): Promise<void>;
 }
 
 /**
@@ -698,6 +701,7 @@ interface IView {
      *		A <code>Mediator</code> is registered with the given <code>mediatorName</code>.
         */
     hasMediator(mediatorName: string): boolean;
+    dispose(): Promise<void>;
 }
 
 /**
@@ -805,6 +809,7 @@ declare class Controller implements IController {
      * 		mapping for.
      */
     removeCommand(notificationName: string): void;
+    dispose(): Promise<void>;
     /**
      * Singleton instance local reference.
      *
@@ -904,6 +909,7 @@ declare class Model implements IModel {
      *		A Proxy is currently registered with the given <code>proxyName</code>.
      */
     hasProxy(proxyName: string): boolean;
+    dispose(): Promise<void>;
     /**
      * Error message used to indicate that a controller singleton is already constructed when
      * trying to constructs the class twice.
@@ -1046,6 +1052,7 @@ declare class View implements IView {
      *		A <code>Mediator</code> is registered with the given <code>mediatorName</code>.
      */
     hasMediator(mediatorName: string): boolean;
+    dispose(): Promise<void>;
     /**
      * @constant
      * @protected
@@ -1622,6 +1629,7 @@ declare class Facade implements IFacade {
      *		The type of the notification to send.
      */
     sendNotification(name: string, body?: any, type?: string): Promise<void>;
+    dispose(): Promise<void>;
     /**
      * @constant
      * @protected

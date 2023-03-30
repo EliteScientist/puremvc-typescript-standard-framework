@@ -73,4 +73,6 @@ export interface IController
 	 * 		mapping for.
 	 */
 	removeCommand( notificationName:string ):void;
+
+	dispose(): Promise<void>;
 }

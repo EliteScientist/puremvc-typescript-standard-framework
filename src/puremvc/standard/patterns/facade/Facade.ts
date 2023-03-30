@@ -358,6 +358,15 @@ export class Facade
 		return this.notifyObservers( new Notification( name, body, type ) );
 	}
 
+	public async dispose(): Promise<void>
+	{
+		await this.#view.dispose();
+		await this.#controller.dispose();
+		await this.#model.dispose();
+
+		Facade.instance	= undefined;
+	}
+
 	/**
 	 * @constant
 	 * @protected

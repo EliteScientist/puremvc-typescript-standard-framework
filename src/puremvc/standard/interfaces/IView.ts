@@ -111,4 +111,6 @@ export interface IView
 	 *		A <code>Mediator</code> is registered with the given <code>mediatorName</code>.
 		*/
 	hasMediator( mediatorName:string ):boolean;
+
+	dispose(): Promise<void>;
 }
