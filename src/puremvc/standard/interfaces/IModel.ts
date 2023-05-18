@@ -35,7 +35,7 @@ export interface IModel
 		*		The <code>IProxy</code> that was removed from the <code>Model</code> or an
 		*		explicit <code>null</null> if the <code>IProxy</code> didn't exist.
 		*/
-	removeProxy( proxyName:string ):IProxy | undefined;
+	removeProxy<ProxyType extends IProxy = IProxy>( proxyName:string ):ProxyType | undefined;
 
 	/**
 	 * Retrieve an <code>IProxy</code> from the <code>Model</code>.
@@ -47,7 +47,7 @@ export interface IModel
 		*		The <code>IProxy</code> instance previously registered with the given
 		*		<code>proxyName</code> or an explicit <code>null</code> if it doesn't exists.
 		*/
-	retrieveProxy( proxyName:string ):IProxy | undefined;
+	retrieveProxy<ProxyType extends IProxy = IProxy>( proxyName:string ):ProxyType | undefined;
 
 	/**
 	 * Check if a Proxy is registered

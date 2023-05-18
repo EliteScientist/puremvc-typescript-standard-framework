@@ -210,10 +210,10 @@ export class View
 	 * 		The <code>IMediator</code> instance previously registered with the given
 	 *		<code>mediatorName</code> or an explicit <code>null</code> if it doesn't exists.
 	 */
-	public retrieveMediator( mediatorName:string ):IMediator | undefined
+	public retrieveMediator<MediatorType extends IMediator = IMediator>( mediatorName:string ):MediatorType | undefined
 	{
 		//Return a strict null when the mediator doesn't exist
-		return this.#mediatorMap.get(mediatorName);
+		return this.#mediatorMap.get(mediatorName) as MediatorType;
 	}
 
 	/**
@@ -226,7 +226,7 @@ export class View
 	 *		The <code>IMediator</code> that was removed from the <code>View</code> or a
 	 *		strict <code>null</null> if the <code>Mediator</code> didn't exist.
 	 */
-	public removeMediator( mediatorName:string ):IMediator | undefined
+	public removeMediator<MediatorType extends IMediator = IMediator>( mediatorName:string ):MediatorType | undefined
 	{
 		// Retrieve the named mediator
 		const mediator = this.#mediatorMap.get(mediatorName);
@@ -249,7 +249,7 @@ export class View
 		//Alert the mediator that it has been removed
 		mediator.onRemove();
 
-		return mediator;
+		return mediator as MediatorType;
 	}
 	
 	/**

@@ -87,7 +87,7 @@ export interface IView
 	 * 		The <code>IMediator</code> instance previously registered with the given
 	 *		<code>mediatorName</code> or an explicit <code>null</code> if it doesn't exists.
 		*/
-	retrieveMediator( mediatorName:string ):IMediator | undefined;
+	retrieveMediator<MediatorType extends IMediator = IMediator>( mediatorName:string ):MediatorType | undefined;
 
 	/**
 	 * Remove an <code>IMediator</code> from the <code>View</code>.
@@ -99,7 +99,7 @@ export interface IView
 	 *		The <code>IMediator</code> that was removed from the <code>View</code> or a
 		*		strict <code>null</null> if the <code>Mediator</code> didn't exist.
 		*/
-	removeMediator( mediatorName:string ):IMediator | undefined;
+	removeMediator<MediatorType extends IMediator = IMediator>( mediatorName:string ):MediatorType | undefined;
 	
 	/**
 	 * Check if a <code>IMediator</code> is registered or not.

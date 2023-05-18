@@ -81,7 +81,7 @@ export class Model
 	 *		The <code>IProxy</code> that was removed from the <code>Model</code> or an
 	 *		explicit <code>null</null> if the <code>IProxy</code> didn't exist.
 	 */
-	public removeProxy(proxyName:string): IProxy | undefined
+	public removeProxy<ProxyType extends IProxy = IProxy>(proxyName:string): ProxyType | undefined
 	{
 		const proxy = this.#proxyMap.get(proxyName);
 
@@ -91,7 +91,7 @@ export class Model
 			proxy.onRemove();
 		}
 		
-		return proxy;
+		return proxy as ProxyType;
 	}
 
 	/**
@@ -104,10 +104,10 @@ export class Model
 	 *		The <code>IProxy</code> instance previously registered with the given
 	 *		<code>proxyName</code> or an explicit <code>null</code> if it doesn't exists.
 	 */
-	public retrieveProxy( proxyName:string ):IProxy | undefined
+	public retrieveProxy<ProxyType extends IProxy = IProxy>( proxyName:string ): ProxyType | undefined
 	{
 		//Return a strict null when the proxy doesn't exist
-		return this.#proxyMap.get(proxyName);
+		return this.#proxyMap.get(proxyName) as ProxyType;
 	}
 
 	/**

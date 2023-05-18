@@ -71,7 +71,7 @@ export interface IFacade
 	 * @return
 	 * 		The <code>IProxy</code> previously registered with the given <code>proxyName</code>.
 	 */
-	retrieveProxy( proxyName:string ):IProxy | undefined;
+	retrieveProxy<ProxyType extends IProxy = IProxy>( proxyName:string ):ProxyType | undefined;
 	
 	/**
 	 * Remove an <code>IProxy</code> from the <code>Model</code> by name.
@@ -82,7 +82,7 @@ export interface IFacade
 		* @return
 		*		The <code>IProxy</code> that was removed from the <code>Model</code>
 		*/
-	removeProxy( proxyName:string ):IProxy | undefined;
+	removeProxy<ProxyType extends IProxy = IProxy>( proxyName:string ):ProxyType | undefined;
 
 	/**
 	 * Check if a <code>Proxy</code> is registered.
@@ -114,7 +114,7 @@ export interface IFacade
 	 *		The <code>IMediator</code> previously registered with the given
 		*		<code>mediatorName</code>.
 		*/
-	retrieveMediator( mediatorName:string ):IMediator | undefined;
+	retrieveMediator<MediatorType extends IMediator = IMediator>( mediatorName:string ):MediatorType | undefined;
 
 	/**
 	 * Remove an <code>IMediator</code> from the <code>IView</code>.
@@ -125,7 +125,7 @@ export interface IFacade
 	 * @return
 	 *		The <code>IMediator</code> that was removed from the <code>IView</code>
 		*/
-	removeMediator( mediatorName:string ):IMediator | undefined;
+	removeMediator<MediatorType extends IMediator = IMediator>( mediatorName:string ):MediatorType | undefined;
 	
 	/**
 	 * Check if a Mediator is registered or not

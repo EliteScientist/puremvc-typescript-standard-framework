@@ -229,9 +229,9 @@ export class Facade
 	 * 		The <code>IProxy</code> previously registered with the given
 	 *		<code>proxyName</code>.
 	 */
-	public retrieveProxy( proxyName:string ):IProxy | undefined
+	public retrieveProxy<ProxyType extends IProxy = IProxy>( proxyName:string ):ProxyType | undefined
 	{
-		return this.#model.retrieveProxy( proxyName );
+		return this.#model.retrieveProxy<ProxyType>( proxyName );
 	}
 
 	/**
@@ -243,9 +243,9 @@ export class Facade
 	 * @return
 	 *		The <code>IProxy</code> that was removed from the <code>Model</code>
 	 */
-	public removeProxy ( proxyName:string ):IProxy | undefined
+	public removeProxy<ProxyType extends IProxy = IProxy>( proxyName:string ):ProxyType | undefined
 	{
-		return this.#model?.removeProxy(proxyName);
+		return this.#model?.removeProxy<ProxyType>(proxyName);
 	}
 
 	/**
@@ -285,9 +285,9 @@ export class Facade
 	 *		The <code>IMediator</code> previously registered with the given
 	 *		<code>mediatorName</code>.
 	 */
-	public retrieveMediator( mediatorName:string ):IMediator | undefined
+	public retrieveMediator<MediatorType extends IMediator = IMediator>( mediatorName:string ):MediatorType | undefined
 	{
-		return this.#view.retrieveMediator( mediatorName );
+		return this.#view.retrieveMediator<MediatorType>( mediatorName );
 	}
 
 	/**
@@ -299,9 +299,9 @@ export class Facade
 	 * @return
 	 *		The <code>IMediator</code> that was removed from the <code>IView</code>
 	 */
-	public removeMediator( mediatorName:string ):IMediator | undefined
+	public removeMediator<MediatorType extends IMediator = IMediator>( mediatorName:string ):MediatorType | undefined
 	{
-		return this.#view?.removeMediator(mediatorName);
+		return this.#view?.removeMediator<MediatorType>(mediatorName);
 	}
 
 	/**

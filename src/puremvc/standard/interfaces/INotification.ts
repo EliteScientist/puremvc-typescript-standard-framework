@@ -22,7 +22,7 @@
  * pattern. PureMVC classes need not be related to each other in a parent/child relationship in
  * order to communicate with one another using <code>INotification</code>s.
  */
-export interface INotification
+export interface INotification<BodyType = any>
 {
 	/**
 	 * Get the name of the <code>Notification</code> instance.
@@ -38,7 +38,7 @@ export interface INotification
 	 * @param body
 	 * 		The body of the notification instance.
 	 */
-	setBody( body:any ):void;
+	setBody( body:BodyType ):void;
 
 	/**
 	 * Get the body of the <code>INotification</code>.
@@ -46,7 +46,7 @@ export interface INotification
 	 * @return
 	 *		The body object of the <code>INotification</code>.
 		*/
-	getBody():any;
+	getBody():BodyType;
 
 	/**
 	 * Set the type of the <code>INotification</code>.

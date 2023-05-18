@@ -22,7 +22,7 @@
  * pattern. PureMVC classes need not be related to each other in a parent/child relationship in
  * order to communicate with one another using <code>INotification</code>s.
  */
-interface INotification {
+interface INotification<BodyType = any> {
     /**
      * Get the name of the <code>Notification</code> instance.
      *
@@ -36,14 +36,14 @@ interface INotification {
      * @param body
      * 		The body of the notification instance.
      */
-    setBody(body: any): void;
+    setBody(body: BodyType): void;
     /**
      * Get the body of the <code>INotification</code>.
      *
      * @return
      *		The body object of the <code>INotification</code>.
         */
-    getBody(): any;
+    getBody(): BodyType;
     /**
      * Set the type of the <code>INotification</code>.
      *
@@ -401,7 +401,7 @@ interface IFacade extends INotifier {
      * @return
      * 		The <code>IProxy</code> previously registered with the given <code>proxyName</code>.
      */
-    retrieveProxy(proxyName: string): IProxy | undefined;
+    retrieveProxy<ProxyType extends IProxy = IProxy>(proxyName: string): ProxyType | undefined;
     /**
      * Remove an <code>IProxy</code> from the <code>Model</code> by name.
      *
@@ -411,7 +411,7 @@ interface IFacade extends INotifier {
         * @return
         *		The <code>IProxy</code> that was removed from the <code>Model</code>
         */
-    removeProxy(proxyName: string): IProxy | undefined;
+    removeProxy<ProxyType extends IProxy = IProxy>(proxyName: string): ProxyType | undefined;
     /**
      * Check if a <code>Proxy</code> is registered.
      *
@@ -440,7 +440,7 @@ interface IFacade extends INotifier {
      *		The <code>IMediator</code> previously registered with the given
         *		<code>mediatorName</code>.
         */
-    retrieveMediator(mediatorName: string): IMediator | undefined;
+    retrieveMediator<MediatorType extends IMediator = IMediator>(mediatorName: string): MediatorType | undefined;
     /**
      * Remove an <code>IMediator</code> from the <code>IView</code>.
      *
@@ -450,7 +450,7 @@ interface IFacade extends INotifier {
      * @return
      *		The <code>IMediator</code> that was removed from the <code>IView</code>
         */
-    removeMediator(mediatorName: string): IMediator | undefined;
+    removeMediator<MediatorType extends IMediator = IMediator>(mediatorName: string): MediatorType | undefined;
     /**
      * Check if a Mediator is registered or not
      *
@@ -512,7 +512,7 @@ interface IModel {
         *		The <code>IProxy</code> that was removed from the <code>Model</code> or an
         *		explicit <code>null</null> if the <code>IProxy</code> didn't exist.
         */
-    removeProxy(proxyName: string): IProxy | undefined;
+    removeProxy<ProxyType extends IProxy = IProxy>(proxyName: string): ProxyType | undefined;
     /**
      * Retrieve an <code>IProxy</code> from the <code>Model</code>.
      *
@@ -523,7 +523,7 @@ interface IModel {
         *		The <code>IProxy</code> instance previously registered with the given
         *		<code>proxyName</code> or an explicit <code>null</code> if it doesn't exists.
         */
-    retrieveProxy(proxyName: string): IProxy | undefined;
+    retrieveProxy<ProxyType extends IProxy = IProxy>(proxyName: string): ProxyType | undefined;
     /**
      * Check if a Proxy is registered
      *
@@ -679,7 +679,7 @@ interface IView {
      * 		The <code>IMediator</code> instance previously registered with the given
      *		<code>mediatorName</code> or an explicit <code>null</code> if it doesn't exists.
         */
-    retrieveMediator(mediatorName: string): IMediator | undefined;
+    retrieveMediator<MediatorType extends IMediator = IMediator>(mediatorName: string): MediatorType | undefined;
     /**
      * Remove an <code>IMediator</code> from the <code>View</code>.
      *
@@ -690,7 +690,7 @@ interface IView {
      *		The <code>IMediator</code> that was removed from the <code>View</code> or a
         *		strict <code>null</null> if the <code>Mediator</code> didn't exist.
         */
-    removeMediator(mediatorName: string): IMediator | undefined;
+    removeMediator<MediatorType extends IMediator = IMediator>(mediatorName: string): MediatorType | undefined;
     /**
      * Check if a <code>IMediator</code> is registered or not.
      *
@@ -887,7 +887,7 @@ declare class Model implements IModel {
      *		The <code>IProxy</code> that was removed from the <code>Model</code> or an
      *		explicit <code>null</null> if the <code>IProxy</code> didn't exist.
      */
-    removeProxy(proxyName: string): IProxy | undefined;
+    removeProxy<ProxyType extends IProxy = IProxy>(proxyName: string): ProxyType | undefined;
     /**
      * Retrieve an <code>IProxy</code> from the <code>Model</code>.
      *
@@ -898,7 +898,7 @@ declare class Model implements IModel {
      *		The <code>IProxy</code> instance previously registered with the given
      *		<code>proxyName</code> or an explicit <code>null</code> if it doesn't exists.
      */
-    retrieveProxy(proxyName: string): IProxy | undefined;
+    retrieveProxy<ProxyType extends IProxy = IProxy>(proxyName: string): ProxyType | undefined;
     /**
      * Check if a Proxy is registered
      *
@@ -1030,7 +1030,7 @@ declare class View implements IView {
      * 		The <code>IMediator</code> instance previously registered with the given
      *		<code>mediatorName</code> or an explicit <code>null</code> if it doesn't exists.
      */
-    retrieveMediator(mediatorName: string): IMediator | undefined;
+    retrieveMediator<MediatorType extends IMediator = IMediator>(mediatorName: string): MediatorType | undefined;
     /**
      * Remove an <code>IMediator</code> from the <code>View</code>.
      *
@@ -1041,7 +1041,7 @@ declare class View implements IView {
      *		The <code>IMediator</code> that was removed from the <code>View</code> or a
      *		strict <code>null</null> if the <code>Mediator</code> didn't exist.
      */
-    removeMediator(mediatorName: string): IMediator | undefined;
+    removeMediator<MediatorType extends IMediator = IMediator>(mediatorName: string): MediatorType | undefined;
     /**
      * Check if a <code>IMediator</code> is registered or not.
      *
@@ -1538,7 +1538,7 @@ declare class Facade implements IFacade {
      * 		The <code>IProxy</code> previously registered with the given
      *		<code>proxyName</code>.
      */
-    retrieveProxy(proxyName: string): IProxy | undefined;
+    retrieveProxy<ProxyType extends IProxy = IProxy>(proxyName: string): ProxyType | undefined;
     /**
      * Remove an <code>IProxy</code> from the <code>Model</code> by name.
      *
@@ -1548,7 +1548,7 @@ declare class Facade implements IFacade {
      * @return
      *		The <code>IProxy</code> that was removed from the <code>Model</code>
      */
-    removeProxy(proxyName: string): IProxy | undefined;
+    removeProxy<ProxyType extends IProxy = IProxy>(proxyName: string): ProxyType | undefined;
     /**
      * Check if a <code>Proxy</code> is registered.
      *
@@ -1577,7 +1577,7 @@ declare class Facade implements IFacade {
      *		The <code>IMediator</code> previously registered with the given
      *		<code>mediatorName</code>.
      */
-    retrieveMediator(mediatorName: string): IMediator | undefined;
+    retrieveMediator<MediatorType extends IMediator = IMediator>(mediatorName: string): MediatorType | undefined;
     /**
      * Remove an <code>IMediator</code> from the <code>IView</code>.
      *
@@ -1587,7 +1587,7 @@ declare class Facade implements IFacade {
      * @return
      *		The <code>IMediator</code> that was removed from the <code>IView</code>
      */
-    removeMediator(mediatorName: string): IMediator | undefined;
+    removeMediator<MediatorType extends IMediator = IMediator>(mediatorName: string): MediatorType | undefined;
     /**
      * Check if a <code>Mediator</code> is registered or not
      *
