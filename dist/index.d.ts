@@ -1807,4 +1807,5 @@ declare class Proxy<DataType = unknown> extends Notifier implements IProxy<DataT
     static NAME: string;
 }
 
-export { CommandConstructor, Controller, Facade, ICommand, IController, IFacade, IMediator, IModel, INotification, INotifier, IObserver, IProxy, IView, MacroCommand, Mediator, Model, Notification, Notifier, Observer, Proxy, SimpleCommand, View };
+export { Controller, Facade, MacroCommand, Mediator, Model, Notification, Notifier, Observer, Proxy, SimpleCommand, View };
+export type { CommandConstructor, ICommand, IController, IFacade, IMediator, IModel, INotification, INotifier, IObserver, IProxy, IView };
